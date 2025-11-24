@@ -1,21 +1,17 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: "light",
     primary: {
-      main: '#0057d9',
-      light: '#4f8ef3',
-      dark: '#003c99',
+      main: "#BB2E28",
     },
     secondary: {
-      main: '#ff5c8d',
-      light: '#ff8fb1',
-      dark: '#c62863',
+      main: "#D1B068",
     },
     background: {
-      default: '#f4f6fb',
-      paper: '#ffffff',
+      default: "#ffffff",
+      paper: "#f4f6fb",
     },
   },
   typography: {
@@ -23,7 +19,7 @@ export const theme = createTheme({
     h1: { fontWeight: 700 },
     h2: { fontWeight: 700 },
     h3: { fontWeight: 700 },
-    button: { textTransform: 'none', fontWeight: 600 },
+    button: { textTransform: "none", fontWeight: 600 },
   },
   shape: {
     borderRadius: 12,
@@ -32,7 +28,8 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 999,
+          borderRadius: "8px",
+          boxShadow: "none",
         },
       },
     },
@@ -42,10 +39,9 @@ export const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          borderRadius: 16,
+          // borderRadius: 16,
         },
       },
     },
   },
-})
-
+});
