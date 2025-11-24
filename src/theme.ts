@@ -27,9 +27,16 @@ export const theme = createTheme({
         fontSize: "56px",
       },
     },
-    h2: { fontWeight: 700, fontFamily: "Zilla Slab" },
+    h2: {
+      fontWeight: 700,
+      fontFamily: "Zilla Slab",
+      fontSize: "32px",
+      [createTheme().breakpoints.up("md")]: {
+        fontSize: "48px",
+      },
+    },
     h3: { fontWeight: 700, fontFamily: "Zilla Slab" },
-    h4: { fontWeight: 700, fontFamily: "Zilla Slab" },
+    h4: { fontWeight: 700, fontFamily: "Zilla Slab", fontSize: "14px" },
     h5: { fontWeight: 700, fontFamily: "Zilla Slab" },
     h6: { fontWeight: 700, fontFamily: "Zilla Slab" },
     button: { textTransform: "none", fontWeight: 600 },
