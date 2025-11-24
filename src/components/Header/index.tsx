@@ -3,13 +3,13 @@ import {
   Box,
   Button,
   Collapse,
+  Container,
   IconButton,
   Link,
   Stack,
-  Toolbar,
   Typography,
 } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import { Close, Menu } from "@mui/icons-material";
 import { useDisclosure } from "@chakra-ui/react";
 
 export default function Header() {
@@ -20,23 +20,76 @@ export default function Header() {
       position="sticky"
       color="transparent"
       elevation={0}
-      sx={{ backgroundColor: "white" }}
+      sx={{
+        backgroundColor: "white",
+        borderBottom: 1,
+        borderColor: mobileMenuDisclosure.open
+          ? "secondary.main"
+          : "transparent",
+        position: "relative",
+      }}
     >
-      <Toolbar sx={{ gap: 2 }}>
-        <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700 }}>
-          Logo
-        </Typography>
-
+      <Container maxWidth="xl" sx={{ position: "relative" }}>
         {/*{" MOBILE "}*/}
-        <Box>
+        <Stack
+          direction="row"
+          spacing={2}
+          height={64}
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ gap: 2, display: { xs: "flex", md: "none" } }}
+        >
+          <Logo />
+
           <IconButton color="primary" onClick={mobileMenuDisclosure.onToggle}>
-            <Menu />
+            {mobileMenuDisclosure.open ? <Close /> : <Menu />}
           </IconButton>
-        </Box>
-      </Toolbar>
+        </Stack>
+
+        {/*{" DESKTOP "}*/}
+        <Stack
+          direction="row"
+          spacing={2}
+          height={64}
+          sx={{
+            display: { xs: "none", md: "flex" },
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Stack direction="row" spacing={2} alignItems="center">
+            {menuItems.map(item => (
+              <Button
+                component={Link}
+                variant="text"
+                key={item.href}
+                color="secondary"
+              >
+                {item.label}
+              </Button>
+            ))}
+          </Stack>
+
+          <Box
+            sx={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+              pointerEvents: "none",
+            }}
+          >
+            <Logo />
+          </Box>
+
+          <Button component={Link} variant="outlined" color="primary">
+            Comprar ahora
+          </Button>
+        </Stack>
+      </Container>
 
       <Collapse in={mobileMenuDisclosure.open} unmountOnExit>
-        <Stack sx={{ px: 1 }} spacing={0.5}>
+        <Stack sx={{ px: 1, pb: 2 }} spacing={0.5}>
           {menuItems.map(item => (
             <Button
               component={Link}
@@ -57,6 +110,14 @@ export default function Header() {
     </AppBar>
   );
 }
+
+const Logo = () => {
+  return (
+    <Typography variant="h6" sx={{ fontWeight: 700 }}>
+      Logo
+    </Typography>
+  );
+};
 
 const menuItems = [
   {
