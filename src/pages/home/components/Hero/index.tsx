@@ -1,4 +1,12 @@
-import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Stack,
+  Typography,
+  useMediaQuery,
+  type SxProps,
+} from "@mui/material";
 import { theme } from "../../../../theme";
 
 export default function Hero() {
@@ -8,45 +16,68 @@ export default function Hero() {
 
 const MobileContent = () => {
   return (
-    <Stack
-      spacing={2.5}
-      sx={{
-        backgroundColor: "red",
-        height: { xs: "812px", sm: "1024px" },
-        color: "white",
-        pt: { xs: 6, sm: 26 },
-      }}
-    >
-      <Texts />
-      <Buttons />
-    </Stack>
+    <Box sx={{ backgroundColor: "red" }}>
+      <Container>
+        <Stack
+          spacing={2.5}
+          sx={{
+            height: { xs: "812px", sm: "1024px" },
+            color: "white",
+            pt: { xs: 6, sm: 26 },
+          }}
+        >
+          <Texts
+            sx={{
+              width: { xs: "100%", sm: "734px" },
+              m: "0 auto",
+              alignSelf: "center",
+            }}
+          />
+          <Buttons />
+        </Stack>
+      </Container>
+    </Box>
   );
 };
 
 const DesktopContent = () => {
   return (
-    <Stack
-      spacing={{ xs: 3, md: 4 }}
-      py={40}
-      sx={{ backgroundColor: "red", height: "812px", color: "white" }}
-    >
-      <Texts />
-      <Buttons />
-    </Stack>
+    <Box sx={{ backgroundColor: "red" }}>
+      <Container>
+        <Stack
+          spacing={{ xs: 3, md: 4 }}
+          sx={{
+            height: "812px",
+            color: "white",
+            justifyContent: "center",
+          }}
+        >
+          <Texts sx={{ width: { xs: "100%", sm: "544px" }, m: "0 auto" }} />
+
+          <Buttons sx={{ justifyContent: "left" }} />
+        </Stack>
+      </Container>
+    </Box>
   );
 };
 
-const Texts = () => {
+const Texts = ({ sx }: { sx?: SxProps }) => {
   return (
-    <Stack spacing={2.5}>
+    <Stack spacing={2.5} sx={sx}>
       <Typography
         variant="h1"
-        sx={{ textAlign: "center", textTransform: "uppercase" }}
+        sx={{
+          textAlign: { md: "left", sm: "center", xs: "center" },
+          textTransform: "uppercase",
+        }}
       >
         Una tradición superior 100% hecha en méxico
       </Typography>
 
-      <Typography variant="body1" sx={{ textAlign: "center" }}>
+      <Typography
+        variant="body1"
+        sx={{ textAlign: { md: "left", sm: "center", xs: "center" } }}
+      >
         Una cerveza hecha con propósito. Porque cuando algo está bien hecho,
         trasciende el tiempo.
       </Typography>
@@ -54,9 +85,9 @@ const Texts = () => {
   );
 };
 
-const Buttons = () => {
+const Buttons = ({ sx }: { sx?: SxProps }) => {
   return (
-    <Stack direction="row" spacing={2} justifyContent="center">
+    <Stack direction="row" spacing={2} justifyContent="center" sx={sx}>
       <Button variant="contained" color="white">
         Conocer más
       </Button>
