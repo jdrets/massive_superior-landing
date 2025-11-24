@@ -21,6 +21,9 @@ export const theme = createTheme({
       fontFamily: "Zilla Slab",
       fontSize: "36px",
       [createTheme().breakpoints.up("sm")]: {
+        fontSize: "48px",
+      },
+      [createTheme().breakpoints.up("md")]: {
         fontSize: "56px",
       },
     },
@@ -40,6 +43,9 @@ export const theme = createTheme({
         root: {
           borderRadius: "8px",
           boxShadow: "none",
+          ":hover": {
+            boxShadow: "none",
+          },
         },
       },
       variants: [
