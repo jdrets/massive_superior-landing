@@ -11,9 +11,15 @@ import {
 } from "@mui/material";
 import { Close, Menu } from "@mui/icons-material";
 import { useDisclosure } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const mobileMenuDisclosure = useDisclosure();
+
+  const navigate = useNavigate();
+  const handleGoTo = (href: string) => {
+    navigate(href);
+  };
 
   return (
     <AppBar
@@ -29,7 +35,7 @@ export default function Header() {
         position: "relative",
       }}
     >
-      <Container maxWidth="xl" sx={{ position: "relative" }}>
+      <Container sx={{ position: "relative" }}>
         {/*{" MOBILE "}*/}
         <Stack
           direction="row"
@@ -60,10 +66,10 @@ export default function Header() {
           <Stack direction="row" spacing={2} alignItems="center">
             {menuItems.map(item => (
               <Button
-                component={Link}
                 variant="text"
                 key={item.href}
                 color="secondary"
+                onClick={() => handleGoTo(item.href)}
               >
                 {item.label}
               </Button>
@@ -82,7 +88,11 @@ export default function Header() {
             <Logo />
           </Box>
 
-          <Button component={Link} variant="outlined" color="primary">
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => handleGoTo("/donde-comprar")}
+          >
             Comprar ahora
           </Button>
         </Stack>
@@ -92,17 +102,22 @@ export default function Header() {
         <Stack sx={{ px: 1, pb: 2 }} spacing={0.5}>
           {menuItems.map(item => (
             <Button
-              component={Link}
               variant="text"
               key={item.href}
               color="secondary"
               fullWidth
               sx={{ justifyContent: "flex-start" }}
+              onClick={() => handleGoTo(item.href)}
             >
               {item.label}
             </Button>
           ))}
-          <Button component={Link} variant="outlined" color="primary" fullWidth>
+          <Button
+            variant="outlined"
+            color="primary"
+            fullWidth
+            onClick={() => handleGoTo("/donde-comprar")}
+          >
             Comprar ahora
           </Button>
         </Stack>
@@ -122,14 +137,14 @@ const Logo = () => {
 const menuItems = [
   {
     label: "Nuestra historia",
-    href: "/our-story",
+    href: "/nuestra-historia",
   },
   {
     label: "Productos",
-    href: "/our-products",
+    href: "/productos",
   },
   {
-    label: "Donde comprar",
-    href: "/our-services",
+    label: "Dónde comprar",
+    href: "/donde-comprar",
   },
 ];

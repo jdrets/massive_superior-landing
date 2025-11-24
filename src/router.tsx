@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import App from './App.tsx'
-import HomePage from './pages/HomePage.tsx'
+import HomePage from './pages/home/index.tsx'
 import NotFoundPage from './pages/NotFoundPage.tsx'
 
 export const router = createBrowserRouter([

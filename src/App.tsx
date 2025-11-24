@@ -7,9 +7,9 @@ export default function App() {
     <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
       <Header />
 
-      <Container component="main" sx={{ py: { xs: 4, md: 8 } }}>
+      <main>
         <Outlet />
-      </Container>
+      </main>
     </Box>
   );
 }
