@@ -1,20 +1,92 @@
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+  Modal,
+  IconButton,
+} from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { useState } from "react";
 import divider from "../divider.png";
 
 const storeLocations = [
-  { year: "1910", name: "Moctezuma", image: "" },
-  { year: "1940", name: "Superior", image: "" },
-  { year: "1970", name: "Superior", image: "" },
-  { year: "1975", name: "Superior", image: "" },
-  { year: "1985", name: "Superior", image: "" },
-  { year: "1994", name: "Superior", image: "" },
-  { year: "2006", name: "Superior", image: "" },
-  { year: "2015", name: "Superior", image: "" },
-  { year: "2021", name: "Superior - Edición Especial", image: "" },
-  { year: "2021", name: "Superior - Nueva Imagen", image: "" },
+  {
+    year: "1910",
+    name: "Moctezuma",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "1940",
+    name: "Superior",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "1970",
+    name: "Superior",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "1975",
+    name: "Superior",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "1985",
+    name: "Superior",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "1994",
+    name: "Superior",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "2006",
+    name: "Superior",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "2015",
+    name: "Superior",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "2021",
+    name: "Superior - Edición Especial",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
+  {
+    year: "2021",
+    name: "Superior - Nueva Imagen",
+    image:
+      "https://cdn.freebiesupply.com/logos/large/2x/superior-3-logo-png-transparent.png",
+  },
 ];
 
 export default function TagsSection() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const handleOpenLightbox = (image: string) => {
+    if (image) {
+      setSelectedImage(image);
+    }
+  };
+
+  const handleCloseLightbox = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <Box sx={{ backgroundColor: "#FFE4BC" }}>
       <Container sx={{ position: "relative" }}>
@@ -55,10 +127,17 @@ export default function TagsSection() {
                     component="img"
                     src={label.image}
                     alt={label.name}
+                    onClick={() => handleOpenLightbox(label.image)}
                     sx={{
                       width: "100%",
                       height: "100%",
                       objectFit: "contain",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease-in-out",
+                      "&:hover": {
+                        transform: "translateY(-8px) scale(1.05)",
+                        boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                      },
                     }}
                   />
                   <Typography
@@ -76,6 +155,57 @@ export default function TagsSection() {
               </Grid>
             ))}
           </Grid>
+
+          {/* Lightbox Modal */}
+          <Modal
+            open={!!selectedImage}
+            onClose={handleCloseLightbox}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backdropFilter: "blur(4px)",
+            }}
+          >
+            <Box
+              sx={{
+                position: "relative",
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+                outline: "none",
+              }}
+            >
+              <IconButton
+                onClick={handleCloseLightbox}
+                sx={{
+                  position: "absolute",
+                  top: -40,
+                  right: 0,
+                  color: "white",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  "&:hover": {
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  },
+                }}
+              >
+                <Close />
+              </IconButton>
+              <Box
+                component="img"
+                src={selectedImage || ""}
+                alt="Etiqueta ampliada"
+                sx={{
+                  maxWidth: "100%",
+                  maxHeight: "90vh",
+                  objectFit: "contain",
+                  borderRadius: 2,
+                  boxShadow: 24,
+                  backgroundColor: "white",
+                  mt: 2,
+                }}
+              />
+            </Box>
+          </Modal>
         </Stack>
       </Container>
       <Box
