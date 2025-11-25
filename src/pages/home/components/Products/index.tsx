@@ -1,4 +1,13 @@
-import { Box, Chip, Container, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Chip,
+  Container,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+  type SxProps,
+} from "@mui/material";
 import { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -7,6 +16,9 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
 
 export default function Products() {
+  const theme = useTheme();
+  const isTablet = useMediaQuery(theme.breakpoints.only("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(
     products[0]
   );
@@ -21,6 +33,21 @@ export default function Products() {
       sliderRef.current.slickGoTo(index);
     }
   };
+
+  // Forzar actualización del slider cuando cambia el breakpoint
+  useEffect(() => {
+    if (sliderRef.current && selectedProduct) {
+      const index = products.findIndex(p => p.name === selectedProduct.name);
+      if (index !== -1) {
+        // Pequeño delay para asegurar que el slider se haya actualizado
+        setTimeout(() => {
+          if (sliderRef.current) {
+            sliderRef.current.slickGoTo(index);
+          }
+        }, 100);
+      }
+    }
+  }, [isTablet, selectedProduct]);
 
   // Sincronizar el slider cuando cambia selectedProduct desde los chips
   useEffect(() => {
@@ -73,79 +100,113 @@ export default function Products() {
     }
   }, [selectedProduct]);
 
+  const Wrapper = isDesktop ? DesktopWrapper : MobileWrapper;
+
   return (
-    <Stack spacing={5} sx={{ py: 5 }}>
-      <Container>
-        <Stack spacing={1.5}>
-          <Stack spacing={0.5}>
-            <Typography variant="h2" color="secondary.main">
-              Productos
-            </Typography>
-            <Typography variant="h6" color="primary.main">
-              Hecha en México desde 1896.
-            </Typography>
-          </Stack>
-          <Stack spacing={1}>
-            <Box sx={{ height: "1px", backgroundColor: "secondary.main" }} />
-            <Stack>
-              <Typography variant="h6">{selectedProduct?.title}</Typography>
-              <Typography variant="h6">{selectedProduct?.subtitle}</Typography>
+    <Wrapper>
+      <Stack spacing={5}>
+        <Container
+          maxWidth={isTablet ? "sm" : "md"}
+          sx={{ alignSelf: "center" }}
+        >
+          <Stack spacing={1.5}>
+            <Stack spacing={0.5}>
+              <Typography
+                variant="h2"
+                color="secondary.main"
+                textAlign={isTablet ? "center" : "left"}
+              >
+                Productos
+              </Typography>
+              <Typography
+                variant="h6"
+                color="primary.main"
+                textAlign={isTablet ? "center" : "left"}
+              >
+                Hecha en México desde 1896.
+              </Typography>
             </Stack>
-            <Box sx={{ height: "1px", backgroundColor: "secondary.main" }} />
-            <Typography variant="body1">
-              {selectedProduct?.description}
-            </Typography>
+            <Stack spacing={1}>
+              <Box sx={{ height: "1px", backgroundColor: "secondary.main" }} />
+              <Stack>
+                <Typography
+                  variant="h6"
+                  textAlign={isTablet ? "center" : "left"}
+                >
+                  {selectedProduct?.title}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  textAlign={isTablet ? "center" : "left"}
+                >
+                  {selectedProduct?.subtitle}
+                </Typography>
+              </Stack>
+              <Box sx={{ height: "1px", backgroundColor: "secondary.main" }} />
+              <Typography
+                variant="body1"
+                textAlign={isTablet ? "center" : "left"}
+              >
+                {selectedProduct?.description}
+              </Typography>
+            </Stack>
           </Stack>
-        </Stack>
-      </Container>
-      <Box
-        ref={chipsContainerRef}
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "8px",
-          pl: 1.5,
-          overflowX: "auto",
-        }}
-      >
-        {products.map(product => (
-          <Box
-            key={product.name}
-            ref={el => {
-              chipRefs.current[product.name] = el as HTMLElement;
-            }}
-          >
-            <Chip
-              label={product.name}
-              color="primary"
-              variant={
-                selectedProduct?.name === product.name ? "filled" : "outlined"
-              }
-              onClick={() => handleSelectProduct(product)}
-            />
-          </Box>
-        ))}
-      </Box>
+        </Container>
+        <Box
+          ref={chipsContainerRef}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "8px",
+            pl: isTablet ? 0 : 1.5,
+            overflowX: "auto",
+            alignSelf: isTablet ? "center" : "flex-start",
+          }}
+        >
+          {products.map(product => (
+            <Box
+              key={product.name}
+              ref={el => {
+                chipRefs.current[product.name] = el as HTMLElement;
+              }}
+            >
+              <Chip
+                label={product.name}
+                color="primary"
+                variant={
+                  selectedProduct?.name === product.name ? "filled" : "outlined"
+                }
+                onClick={() => handleSelectProduct(product)}
+              />
+            </Box>
+          ))}
+        </Box>
+      </Stack>
+
+      {/* Slider */}
       <Box
         sx={{
           position: "relative",
           width: "100%",
-          maxWidth: "600px",
+          maxWidth: isTablet ? "100%" : "600px",
           margin: "0 auto",
-          px: { xs: 2, md: 4 },
+          px: { xs: 2, sm: 4 },
           pb: 8,
           "& .slick-slider": {
             position: "relative",
           },
           "& .slick-list": {
-            padding: "0px 0 40px 0",
+            padding: isTablet ? "0px 0 80px 0" : "0px 0 40px 0",
           },
           "& .slick-slide": {
             padding: "0 10px",
+            "& > div": {
+              height: "100%",
+            },
           },
           "& .slick-dots": {
             top: "auto",
-            bottom: "-50px",
+            bottom: isTablet ? "-90px" : "-50px",
             right: "0",
             left: "auto",
             display: "flex !important",
@@ -177,14 +238,17 @@ export default function Products() {
         }}
       >
         <Slider
+          key={isTablet ? "tablet" : "mobile"}
           ref={sliderRef}
           dots={true}
           infinite={true}
           speed={500}
-          slidesToShow={1}
+          slidesToShow={isTablet ? 3 : 1}
           slidesToScroll={1}
-          prevArrow={<PrevArrow />}
-          nextArrow={<NextArrow />}
+          centerMode={isTablet}
+          centerPadding={isTablet ? "0px" : undefined}
+          prevArrow={<PrevArrow isTablet={isTablet} />}
+          nextArrow={<NextArrow isTablet={isTablet} />}
           beforeChange={(_current: number, next: number) => {
             setSelectedProduct(products[next]);
           }}
@@ -195,13 +259,15 @@ export default function Products() {
                 sx={{
                   backgroundColor: "white",
                   borderRadius: "16px",
-                  padding: "40px 20px",
+                  padding: isTablet ? "10px 20px" : "40px 20px",
                   border: "1px solid rgba(204, 204, 204, 1)",
                   boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  minHeight: "400px",
+                  minHeight: isTablet ? "250px" : "400px",
+                  aspectRatio: isTablet ? "1 / 1" : "auto",
+                  width: "100%",
                 }}
               >
                 <Box
@@ -210,7 +276,9 @@ export default function Products() {
                   alt={product.name}
                   sx={{
                     maxWidth: "100%",
-                    maxHeight: "350px",
+                    maxHeight: isTablet ? "100%" : "350px",
+                    width: isTablet ? "100%" : "auto",
+                    height: isTablet ? "100%" : "auto",
                     objectFit: "contain",
                   }}
                 />
@@ -219,7 +287,7 @@ export default function Products() {
           ))}
         </Slider>
       </Box>
-    </Stack>
+    </Wrapper>
   );
 }
 
@@ -270,13 +338,19 @@ interface IProduct {
   image: string;
 }
 
-const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
+const PrevArrow = ({
+  onClick,
+  isTablet,
+}: {
+  onClick?: () => void;
+  isTablet?: boolean;
+}) => (
   <Box
     onClick={onClick}
     sx={{
       position: "absolute",
       left: "0",
-      bottom: "-50px",
+      bottom: isTablet ? "-90px" : "-50px",
       zIndex: 2,
       cursor: "pointer",
       width: "50px",
@@ -297,13 +371,19 @@ const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
   </Box>
 );
 
-const NextArrow = ({ onClick }: { onClick?: () => void }) => (
+const NextArrow = ({
+  onClick,
+  isTablet,
+}: {
+  onClick?: () => void;
+  isTablet?: boolean;
+}) => (
   <Box
     onClick={onClick}
     sx={{
       position: "absolute",
       left: "65px",
-      bottom: "-50px",
+      bottom: isTablet ? "-90px" : "-50px",
       zIndex: 2,
       cursor: "pointer",
       width: "50px",
@@ -322,4 +402,28 @@ const NextArrow = ({ onClick }: { onClick?: () => void }) => (
   >
     <ArrowForwardIosIcon sx={{ color: "secondary.main", fontSize: "24px" }} />
   </Box>
+);
+
+const MobileWrapper = ({ children }: { children: React.ReactNode }) => {
+  const theme = useTheme();
+  const isTablet = useMediaQuery(theme.breakpoints.only("sm"));
+  return (
+    <Stack
+      spacing={{ xs: 5, md: 10 }}
+      sx={{
+        pt: 5,
+        pb: isTablet ? 9 : 5,
+      }}
+    >
+      {children}
+    </Stack>
+  );
+};
+
+const DesktopWrapper = ({ children }: { children: React.ReactNode }) => (
+  <Container sx={{ py: 10 }}>
+    <Stack spacing={5} direction="row">
+      {children}
+    </Stack>
+  </Container>
 );
