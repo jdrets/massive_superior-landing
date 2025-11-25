@@ -76,6 +76,12 @@ export const theme = createTheme({
           fontFamily: "Zilla Slab",
           fontWeight: 700,
           fontSize: "16px",
+          p: "10px",
+          height: "35px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textTransform: "uppercase",
         },
         outlined: {
           backgroundColor: "#BB2E2829",
