@@ -84,29 +84,31 @@ const DesktopContent = () => {
 const Texts = ({ sx }: { sx?: SxProps }) => {
   return (
     <Stack spacing={2.5} sx={sx}>
-      <Typography
-        variant="h4"
-        sx={{
-          textAlign: "center",
-          textTransform: "uppercase",
-          backgroundColor: "primary.main",
-          color: "secondary.main",
-          width: "fit-content",
-          padding: "4px 8px",
-          alignSelf: "center",
-        }}
-      >
-        Sobre nosotros
-      </Typography>
-      <Typography
-        variant="h2"
-        sx={{
-          textAlign: "center",
-          textTransform: "uppercase",
-        }}
-      >
-        Hecha en México desde 1896
-      </Typography>
+      <Stack spacing={1.5}>
+        <Typography
+          variant="h4"
+          sx={{
+            textAlign: "center",
+            textTransform: "uppercase",
+            backgroundColor: "primary.main",
+            color: "secondary.main",
+            width: "fit-content",
+            padding: "4px 8px",
+            alignSelf: "center",
+          }}
+        >
+          Sobre nosotros
+        </Typography>
+        <Typography
+          variant="h2"
+          sx={{
+            textAlign: "center",
+            textTransform: "uppercase",
+          }}
+        >
+          Hecha en México desde 1896
+        </Typography>
+      </Stack>
 
       <Typography variant="body1" sx={{ textAlign: "center" }}>
         Desde 1896, Superior ha sido un símbolo de la cultura cervecera
