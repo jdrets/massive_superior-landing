@@ -134,7 +134,7 @@ const Logo = () => {
   );
 };
 
-const menuItems = [
+export const menuItems = [
   {
     label: "Nuestra historia",
     href: "/nuestra-historia",

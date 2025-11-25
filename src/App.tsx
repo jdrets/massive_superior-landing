@@ -1,6 +1,7 @@
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -10,6 +11,8 @@ export default function App() {
       <main>
         <Outlet />
       </main>
+
+      <Footer />
     </Box>
   );
 }
