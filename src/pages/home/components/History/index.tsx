@@ -7,6 +7,7 @@ import {
   type SxProps,
 } from "@mui/material";
 import { theme } from "../../../../theme";
+import divider from "./divider.png";
 
 export default function History() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));

@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
-import divider from "./divider.png";
+import divider from "../divider.png";
 
 const storeLocations = [
   { name: "Uber Eats", id: "uber-eats" },
