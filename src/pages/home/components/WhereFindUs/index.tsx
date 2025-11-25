@@ -1,15 +1,5 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-  type SxProps,
-} from "@mui/material";
-import { theme } from "../../../../theme";
-import { ChevronRight } from "@mui/icons-material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import divider from "./divider.png";
 
 const storeLocations = [
   { name: "Uber Eats", id: "uber-eats" },
@@ -22,6 +12,15 @@ const storeLocations = [
 export default function WhereFindUs() {
   return (
     <Box sx={{ backgroundColor: "primary.main" }}>
+      <Box
+        sx={{
+          backgroundImage: `url(${divider})`,
+          backgroundSize: "contain",
+          backgroundPosition: "left",
+          backgroundRepeat: "repeat-x",
+          height: "32px",
+        }}
+      />
       <Container sx={{ position: "relative" }}>
         <Stack
           spacing={5}
