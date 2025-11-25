@@ -36,6 +36,7 @@ export default function AgeGate() {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [open, setOpen] = useState(!hasAgeSetted);
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +50,7 @@ export default function AgeGate() {
     const today = new Date();
     const age = today.getFullYear() - birthDate.getFullYear();
     if (age < 18) {
-      alert("You must be at least 18 years old to access this website");
+      setError("Debes ser mayor de 18 años para acceder a este sitio.");
       return;
     }
 
@@ -93,9 +94,9 @@ export default function AgeGate() {
         <Stack spacing={4} textAlign="center">
           <Typography variant="h1">LOGO</Typography>
 
-          <Typography variant="body1" fontWeight={700}>
-            Por favor, ingresa tu año de nacimiento, queremos validar tu mayoría
-            de edad.
+          <Typography variant="body1" fontWeight={600}>
+            Por favor, ingresa tu año de nacimiento, <br /> queremos validar tu
+            mayoría de edad.
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit}>
@@ -143,6 +144,7 @@ export default function AgeGate() {
                       fontWeight: 600,
                     },
                   }}
+                  autoComplete="off"
                 />
               </Box>
 
@@ -171,6 +173,7 @@ export default function AgeGate() {
                       fontWeight: 600,
                     },
                   }}
+                  autoComplete="off"
                 />
               </Box>
 
@@ -193,6 +196,7 @@ export default function AgeGate() {
                       fontWeight: 600,
                     },
                   }}
+                  autoComplete="off"
                 />
               </Box>
             </Stack>
@@ -218,6 +222,17 @@ export default function AgeGate() {
             >
               Confirmar
             </Button>
+
+            {error && (
+              <Typography
+                variant="body1"
+                // fontWeight={600}
+                color="secondary.main"
+                mt={4}
+              >
+                {error}
+              </Typography>
+            )}
           </Box>
 
           <Typography
