@@ -62,6 +62,7 @@ export const theme = createTheme({
       fontWeight: 700,
       fontFamily: "Zilla Slab",
       textTransform: "uppercase",
+      fontSize: "16px",
     },
     button: { textTransform: "none", fontWeight: 600 },
   },
@@ -69,6 +70,18 @@ export const theme = createTheme({
     borderRadius: 12,
   },
   components: {
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Zilla Slab",
+          fontWeight: 700,
+          fontSize: "16px",
+        },
+        outlined: {
+          backgroundColor: "#BB2E2829",
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
