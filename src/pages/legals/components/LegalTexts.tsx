@@ -19,7 +19,8 @@ export default function LegalTexts({
               key={index}
               spacing={2}
               sx={{
-                py: 6,
+                pt: { xs: 0, md: 6 },
+                pb: 6,
                 ...(index !== item.sections.length - 1 && {
                   borderBottom: "1px solid",
                   borderColor: "secondary.main",
