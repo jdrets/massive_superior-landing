@@ -72,23 +72,26 @@ export default function Footer() {
               EVITE EL EXCESO
             </Typography>
             <Link
-              to="https://www.google.com"
+              to="/legales/aviso-de-privacidad"
               color="inherit"
               style={{ color: "white" }}
+              onClick={() => window.scrollTo({ top: 0 })}
             >
               Política de Privacidad
             </Link>
             <Link
-              to="https://www.google.com"
+              to="/legales/terminos-y-condiciones"
               color="inherit"
               style={{ color: "white" }}
+              onClick={() => window.scrollTo({ top: 0 })}
             >
               Términos y Condiciones
             </Link>
             <Link
-              to="https://www.google.com"
+              to="/legales/politica-de-cookies"
               color="inherit"
               style={{ color: "white" }}
+              onClick={() => window.scrollTo({ top: 0 })}
             >
               Política de Cookies
             </Link>

@@ -20,7 +20,7 @@ export default function LegalLayout({
           }}
         />
       </Stack>
-      <Stack spacing={6} direction="row">
+      <Stack spacing={6} direction={{ xs: "column", md: "row" }}>
         <Stack sx={{ flexShrink: 0, pt: 5 }}>
           <Typography
             variant="h6"
@@ -29,7 +29,7 @@ export default function LegalLayout({
           >
             Ver también
           </Typography>
-          <Stack textAlign="left" sx={{ pt: 1 }}>
+          <Stack textAlign="left" sx={{ pt: { xs: 0, md: 1 } }}>
             {links
               .filter(link => link.href !== window.location.pathname)
               .map(link => (
@@ -38,7 +38,7 @@ export default function LegalLayout({
                   to={link.href}
                   sx={{
                     color: "#969696",
-                    justifyContent: "space-between",
+                    justifyContent: { xs: "flex-start", md: "space-between" },
                     padding: 0,
                   }}
                   endIcon={<ChevronRight />}
@@ -49,7 +49,13 @@ export default function LegalLayout({
               ))}
           </Stack>
         </Stack>
-        <Box sx={{ width: "1px", backgroundColor: "secondary.main" }} />
+        <Box
+          sx={{
+            width: { xs: "100%", md: "1px" },
+            height: { xs: "1px", md: "auto" },
+            backgroundColor: "secondary.main",
+          }}
+        />
         <LegalTexts data={data} />
       </Stack>
     </Container>
