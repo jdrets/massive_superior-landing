@@ -46,6 +46,7 @@ export const theme = createTheme({
       fontWeight: 700,
       fontFamily: "Zilla Slab",
       textTransform: "uppercase",
+      fontSize: "32px",
     },
     h4: {
       fontWeight: 700,
