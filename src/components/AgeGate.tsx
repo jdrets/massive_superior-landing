@@ -144,6 +144,7 @@ export default function AgeGate() {
                       fontWeight: 600,
                     },
                   }}
+                  type="tel"
                   autoComplete="off"
                 />
               </Box>
@@ -174,6 +175,7 @@ export default function AgeGate() {
                     },
                   }}
                   autoComplete="off"
+                  type="tel"
                 />
               </Box>
 
@@ -197,6 +199,7 @@ export default function AgeGate() {
                     },
                   }}
                   autoComplete="off"
+                  type="tel"
                 />
               </Box>
             </Stack>

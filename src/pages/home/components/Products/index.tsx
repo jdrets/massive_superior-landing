@@ -152,34 +152,38 @@ export default function Products() {
             </Stack>
           </Stack>
         </Container>
-        <Box
-          ref={chipsContainerRef}
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "8px",
-            pl: isTablet ? 0 : 1.5,
-            overflowX: "auto",
-            alignSelf: isTablet ? "center" : "flex-start",
-          }}
-        >
-          {products.map(product => (
-            <Box
-              key={product.name}
-              ref={el => {
-                chipRefs.current[product.name] = el as HTMLElement;
-              }}
-            >
-              <Chip
-                label={product.name}
-                color="primary"
-                variant={
-                  selectedProduct?.name === product.name ? "filled" : "outlined"
-                }
-                onClick={() => handleSelectProduct(product)}
-              />
-            </Box>
-          ))}
+        <Box sx={{ overflow: "hidden" }}>
+          <Box
+            ref={chipsContainerRef}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "8px",
+              pl: isTablet ? 0 : 1.5,
+              overflowX: "scroll  ",
+              alignSelf: isTablet ? "center" : "flex-start",
+            }}
+          >
+            {products.map(product => (
+              <Box
+                key={product.name}
+                ref={el => {
+                  chipRefs.current[product.name] = el as HTMLElement;
+                }}
+              >
+                <Chip
+                  label={product.name}
+                  color="primary"
+                  variant={
+                    selectedProduct?.name === product.name
+                      ? "filled"
+                      : "outlined"
+                  }
+                  onClick={() => handleSelectProduct(product)}
+                />
+              </Box>
+            ))}
+          </Box>
         </Box>
       </Stack>
 

@@ -246,59 +246,63 @@ interface IHistoryItem {
   image: string;
 }
 
-const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
-  <Box
-    onClick={onClick}
-    sx={{
-      position: "absolute",
-      left: "0",
-      bottom: "-50px",
-      zIndex: 2,
-      cursor: "pointer",
-      width: "50px",
-      height: "50px",
-      borderRadius: "50%",
-      border: "1px solid",
-      borderColor: "secondary.main",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: "transparent",
-      "&:hover": {
-        backgroundColor: "rgba(209, 176, 104, 0.1)",
-      },
-    }}
-  >
-    <ArrowBackIosIcon sx={{ color: "secondary.main", fontSize: "24px" }} />
-  </Box>
-);
+const PrevArrow = ({ onClick }: { onClick?: () => void }) => {
+  return (
+    <Box
+      onClick={onClick}
+      sx={{
+        position: "absolute",
+        left: "0",
+        bottom: "-50px",
+        zIndex: 2,
+        cursor: "pointer",
+        width: "50px",
+        height: "50px",
+        borderRadius: "50%",
+        border: "1px solid",
+        borderColor: "secondary.main",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "transparent",
+        "&:hover": {
+          backgroundColor: "rgba(209, 176, 104, 0.1)",
+        },
+      }}
+    >
+      <ArrowBackIosIcon sx={{ color: "secondary.main", fontSize: "24px" }} />
+    </Box>
+  );
+};
 
-const NextArrow = ({ onClick }: { onClick?: () => void }) => (
-  <Box
-    onClick={onClick}
-    sx={{
-      position: "absolute",
-      left: "65px",
-      bottom: "-50px",
-      zIndex: 2,
-      cursor: "pointer",
-      width: "50px",
-      height: "50px",
-      borderRadius: "50%",
-      border: "1px solid",
-      borderColor: "secondary.main",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: "transparent",
-      "&:hover": {
-        backgroundColor: "rgba(209, 176, 104, 0.1)",
-      },
-    }}
-  >
-    <ArrowForwardIosIcon sx={{ color: "secondary.main", fontSize: "24px" }} />
-  </Box>
-);
+const NextArrow = ({ onClick }: { onClick?: () => void }) => {
+  return (
+    <Box
+      onClick={onClick}
+      sx={{
+        position: "absolute",
+        left: "65px",
+        bottom: "-50px",
+        zIndex: 2,
+        cursor: "pointer",
+        width: "50px",
+        height: "50px",
+        borderRadius: "50%",
+        border: "1px solid",
+        borderColor: "secondary.main",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "transparent",
+        "&:hover": {
+          backgroundColor: "rgba(209, 176, 104, 0.1)",
+        },
+      }}
+    >
+      <ArrowForwardIosIcon sx={{ color: "secondary.main", fontSize: "24px" }} />
+    </Box>
+  );
+};
 
 interface TimelineProps {
   items: IHistoryItem[];
