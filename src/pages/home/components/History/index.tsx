@@ -1,5 +1,12 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
-import { useState, useRef } from "react";
+import {
+  Box,
+  Container,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -302,13 +309,49 @@ interface TimelineProps {
 const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
   const totalItems = items.length;
   const fillPercentage = ((currentIndex + 1) / totalItems) * 100;
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const timelineContainerRef = useRef<HTMLDivElement>(null);
+  const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Hacer scroll al punto actual cuando cambie currentIndex en mobile
+  useEffect(() => {
+    if (
+      isMobile &&
+      timelineContainerRef.current &&
+      dotRefs.current[currentIndex]
+    ) {
+      const currentDot = dotRefs.current[currentIndex];
+      const container = timelineContainerRef.current;
+
+      if (currentDot) {
+        const dotLeft = currentDot.offsetLeft;
+        const dotWidth = currentDot.offsetWidth;
+        const containerWidth = container.offsetWidth;
+        const scrollLeft = dotLeft - containerWidth / 2 + dotWidth / 2;
+
+        container.scrollTo({
+          left: scrollLeft,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [currentIndex, isMobile]);
 
   return (
     <Box
+      ref={timelineContainerRef}
       sx={{
         position: "relative",
         width: "100%",
         px: { xs: 2, sm: 4, md: 6 },
+        overflowX: isMobile ? "auto" : "visible",
+        overflowY: "hidden",
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
+        scrollbarWidth: "none",
+        WebkitOverflowScrolling: "touch",
       }}
     >
       {/* Línea base (gris claro) */}
@@ -317,7 +360,9 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
           position: "absolute",
           top: "20px",
           left: 0,
-          right: 0,
+          right: isMobile ? "auto" : 0,
+          width: isMobile ? `${totalItems * 50}vw` : "100%",
+          minWidth: isMobile ? `${totalItems * 50}vw` : "auto",
           height: "2px",
           backgroundColor: "#E8B4B4",
           zIndex: 1,
@@ -330,7 +375,9 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
           position: "absolute",
           top: "20px",
           left: 0,
-          width: `${fillPercentage}%`,
+          width: isMobile
+            ? `${((currentIndex + 1) / totalItems) * totalItems * 40}vw`
+            : `${fillPercentage}%`,
           height: "2px",
           backgroundColor: "#BB2E28",
           zIndex: 2,
@@ -343,10 +390,8 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
         sx={{
           position: "relative",
           display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: "flex-start",
           zIndex: 3,
-          height: "42px", // Altura para alinear puntos con la línea
         }}
       >
         {items.map((item, index) => {
@@ -358,16 +403,19 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
           return (
             <Box
               key={item.year}
+              ref={(el: HTMLDivElement | null) => {
+                dotRefs.current[index] = el;
+              }}
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 cursor: "pointer",
-                flex: 1,
-                maxWidth: "120px",
+                flex: isMobile ? "0 0 42vw" : 1,
+                // width: isMobile ? "50%" : "auto",
+                // maxWidth: isMobile ? "50vw" : "120px",
                 position: "relative",
-                gap: 3,
-                pt: 5.5,
+                minHeight: isMobile ? "100px" : "auto",
               }}
               onClick={() => onItemClick(index)}
             >
@@ -381,6 +429,7 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
                   border: `2px solid ${dotColor}`,
                   boxShadow: "0 0 0 8px white", // Borde blanco para separar de la línea
                   position: "absolute",
+                  top: "20px", // Exactamente donde está la línea
                   left: "50%",
                   transform: "translate(-50%, -50%)", // Centrado perfecto vertical y horizontal
                   zIndex: 4,
@@ -394,12 +443,14 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
               <Typography
                 variant="h6"
                 sx={{
-                  pt: 2,
-                  fontSize: "18px",
+                  mt: "34px", // Espacio desde el punto (20px línea + 6px radio punto + 8px borde blanco)
+                  fontSize: isMobile ? "14px" : "18px",
                   color: textColor,
                   fontWeight: 700,
                   textAlign: "center",
                   transition: "all 0.3s ease",
+                  whiteSpace: "nowrap",
+                  overflow: "visible",
                 }}
               >
                 {item.year}
