@@ -367,6 +367,7 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
                 maxWidth: "120px",
                 position: "relative",
                 gap: 3,
+                pt: 5.5,
               }}
               onClick={() => onItemClick(index)}
             >
@@ -380,7 +381,6 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
                   border: `2px solid ${dotColor}`,
                   boxShadow: "0 0 0 8px white", // Borde blanco para separar de la línea
                   position: "absolute",
-                  mt: "34px", // Centro de la línea (20px + 1px mitad de altura)
                   left: "50%",
                   transform: "translate(-50%, -50%)", // Centrado perfecto vertical y horizontal
                   zIndex: 4,
@@ -394,7 +394,7 @@ const Timeline = ({ items, currentIndex, onItemClick }: TimelineProps) => {
               <Typography
                 variant="h6"
                 sx={{
-                  mt: 5, // Espacio desde el punto (14px + 12px del punto)
+                  pt: 2,
                   fontSize: "18px",
                   color: textColor,
                   fontWeight: 700,
