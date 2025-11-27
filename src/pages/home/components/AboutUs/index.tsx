@@ -11,8 +11,8 @@ import { theme } from "../../../../theme";
 import { ChevronRight } from "@mui/icons-material";
 import chapita from "./assets/chapita.webp";
 import escudosPremios from "./assets/escudos-premios.webp";
-import bgMobile from "./assets/bg-mobile.png";
-import bgDesktop from "./assets/bg-desktop.jpg";
+import bgMobile from "./assets/bg-mobile.webp";
+import bgDesktop from "./assets/bg-desktop.webp";
 
 export default function AboutUs() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
