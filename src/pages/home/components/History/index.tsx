@@ -16,10 +16,30 @@ import dividerImage from "./assets/divider.webp";
 import bg from "./assets/bg.webp";
 import watermark from "./assets/watermark.webp";
 
+// images
+import image1Desktop from "./assets/1-desktop.webp";
+import image1Mobile from "./assets/1-mobile.webp";
+import image2Desktop from "./assets/2-desktop.webp";
+import image2Mobile from "./assets/2-mobile.webp";
+import image3Desktop from "./assets/3-desktop.webp";
+import image3Mobile from "./assets/3-mobile.webp";
+import image4Desktop from "./assets/4-desktop.webp";
+import image4Mobile from "./assets/4-mobile.webp";
+import image5Desktop from "./assets/5-desktop.webp";
+import image5Mobile from "./assets/5-mobile.webp";
+import image6Desktop from "./assets/6-desktop.webp";
+import image6Mobile from "./assets/6-mobile.webp";
+import image7Desktop from "./assets/7-desktop.webp";
+import image7Mobile from "./assets/7-mobile.webp";
+import image8Desktop from "./assets/8-desktop.webp";
+import image8Mobile from "./assets/8-mobile.webp";
+
 export default function History() {
+  const theme = useTheme();
   const [selectedHistoryItem, setSelectedHistoryItem] =
     useState<IHistoryItem | null>(years[0]);
   const sliderRef = useRef<Slider>(null);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const currentIndex = years.findIndex(
     item => item.year === selectedHistoryItem?.year
@@ -128,14 +148,15 @@ export default function History() {
                 >
                   <Box
                     component="img"
-                    src={item.image}
+                    src={isMobile ? item.imageMobile : item.imageDesktop}
                     alt={item.year + " - " + item.title}
                     sx={{
                       maxWidth: "100%",
-                      maxHeight: "350px",
                       width: "100%",
                       height: "100%",
                       objectFit: "contain",
+                      position: "relative",
+                      zIndex: 3,
                     }}
                   />
                 </Box>
@@ -192,6 +213,7 @@ export default function History() {
             mt: { xs: "-180px", sm: "-120px", md: 0 },
             left: { xs: "0", sm: "100px", md: "-340px" },
             opacity: 0.8,
+            zIndex: 1,
           }}
         />
       </Box>
@@ -207,8 +229,8 @@ const years = [
     descriptionTitle: "El inicio de algo distinto.",
     descriptionText:
       "A finales del siglo XIX, en Orizaba, Veracruz, nació una cerveza que no se parecía a ninguna otra. Fue creada con una idea clara: ofrecer un sabor más refinado, dirigido a quienes sabían disfrutar lo bien hecho. Así surgió Superior. Su nombre no fue un adorno: fue una declaración desde el primer día. Estaba destinada a ser diferente, a destacar.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    imageDesktop: image1Desktop,
+    imageMobile: image1Mobile,
   },
   {
     year: "1930-1950",
@@ -217,8 +239,8 @@ const years = [
     descriptionTitle: "Del secreto bien guardado al gusto nacional.",
     descriptionText:
       "Lo que comenzó como un orgullo local empezó a abrirse camino por todo el país. Superior llegó a más ciudades, a más mesas, y poco a poco se ganó un lugar entre las cervezas más apreciadas de México. Su calidad hablaba por sí sola. Donde aparecía, se quedaba.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    imageDesktop: image2Desktop,
+    imageMobile: image2Mobile,
   },
   {
     year: "1960-1980",
@@ -228,8 +250,8 @@ const years = [
     descriptionTitle: "La rubia que definió una era.",
     descriptionText:
       "México tenía su propio ícono en cada esquina: La Rubia Superior. El símbolo que apareció en revistas, espectaculares, conversaciones, y sobre todo, en la memoria colectiva. Durante más de cuatro décadas, fue imposible no verla… o no mencionarla. Su presencia acompañó a generaciones enteras que crecieron sabiendo que “la rubia que todos quieren” no era una simple frase: era parte de la cultura popular. En una época de cambios profundos, Superior dejó huella sin necesidad de palabras complicadas. Bastaba con verla para saber que el momento era suyo.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    imageDesktop: image3Desktop,
+    imageMobile: image3Mobile,
   },
   {
     year: "1985",
@@ -239,8 +261,8 @@ const years = [
     descriptionTitle: "Nueva etapa, misma esencia.",
     descriptionText:
       "Ese año trajo un cambio importante. Superior se integró a una nueva familia cervecera, con más fuerza y presencia nacional. Pero su esencia no cambió. Mantuvo el carácter que siempre la distinguió, y ganó cercanía con nuevas generaciones. Fue una evolución sin concesiones: el mismo sabor, ahora con mayor alcance.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    imageDesktop: image4Desktop,
+    imageMobile: image4Mobile,
   },
   {
     year: "2000-2012",
@@ -250,8 +272,8 @@ const years = [
     descriptionTitle: "El sur la hizo suya.",
     descriptionText:
       "Con la llegada del nuevo milenio, Superior encontró un hogar natural en el sureste mexicano. Veracruz, Tabasco, Yucatán… la adoptaron como parte de su día a día. En las playas, las comidas familiares o las fiestas entre amigos, Superior no faltaba. En esa región, más que una cerveza, se volvió parte del paisaje.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    imageDesktop: image5Desktop,
+    imageMobile: image5Mobile,
   },
   {
     year: "2019",
@@ -261,8 +283,8 @@ const years = [
     descriptionTitle: "Una frase que lo dijo todo.",
     descriptionText:
       "Después de años de conexión auténtica con el sur, surgió una expresión que resumía esa relación: “El sur sabe Superior.” No era una invención. Era una verdad que muchos ya sentían. Porque hay bebidas que refrescan, y hay otras que acompañan. Superior siempre ha sido de las segundas.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    imageDesktop: image6Desktop,
+    imageMobile: image6Mobile,
   },
   {
     year: "2020",
@@ -272,8 +294,9 @@ const years = [
     descriptionTitle: "Una nueva forma de disfrutar.",
     descriptionText:
       "Ese año llegó Bellita, una presentación de 300 ml en botella de vidrio no retornable. Ideal para esos momentos casuales que no se planean, pero que se disfrutan como si sí. Bellita fue la forma perfecta de seguir presente, ahora en nuevos espacios, con nuevas generaciones. Práctica por fuera, auténtica por dentro.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+
+    imageDesktop: image7Desktop,
+    imageMobile: image7Mobile,
   },
   {
     year: "2021",
@@ -283,8 +306,8 @@ const years = [
     descriptionTitle: "125 años de historia viva.",
     descriptionText:
       "Más de un siglo después, Superior celebró su aniversario 125 con orgullo. Porque no todas las marcas pueden decir que han acompañado a tantas generaciones manteniéndose fieles a su carácter. Hoy, como en 1896, Superior sigue siendo una cerveza hecha con propósito. Porque cuando algo está bien hecho, trasciende el tiempo.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    imageDesktop: image8Desktop,
+    imageMobile: image8Mobile,
   },
 ] as IHistoryItem[];
 
@@ -295,6 +318,8 @@ interface IHistoryItem {
   descriptionTitle: string;
   descriptionText: string;
   image: string;
+  imageDesktop: string;
+  imageMobile: string;
 }
 
 const PrevArrow = ({ onClick }: { onClick?: () => void }) => {
