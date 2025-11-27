@@ -6,7 +6,6 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-  type SxProps,
 } from "@mui/material";
 import { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
@@ -14,6 +13,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
+import addornment from "../../../../assets/ornamento.webp";
 
 export default function Products() {
   const theme = useTheme();
@@ -111,6 +111,16 @@ export default function Products() {
         >
           <Stack spacing={1.5}>
             <Stack spacing={0.5}>
+              {/* <Stack spacing={5}> */}
+              {/* <Box
+                  component="img"
+                  src={addornment}
+                  alt="Adornment"
+                  height={48}
+                  width="fit-content"
+                  sx={{ alignSelf: "center" }}
+                /> */}
+
               <Typography
                 variant="h2"
                 color="secondary.main"
@@ -118,6 +128,7 @@ export default function Products() {
               >
                 Productos
               </Typography>
+              {/* </Stack> */}
               <Typography
                 variant="h6"
                 color="primary.main"
@@ -152,7 +163,13 @@ export default function Products() {
             </Stack>
           </Stack>
         </Container>
-        <Box sx={{ overflow: "hidden" }}>
+        <Box
+          sx={{
+            overflow: "hidden",
+            display: "flex",
+            justifyContent: isTablet ? "center" : "flex-start",
+          }}
+        >
           <Box
             ref={chipsContainerRef}
             sx={{
@@ -160,7 +177,7 @@ export default function Products() {
               flexDirection: "row",
               gap: "8px",
               pl: isTablet ? 0 : 1.5,
-              overflowX: "scroll  ",
+              overflowX: "scroll",
               alignSelf: isTablet ? "center" : "flex-start",
             }}
           >

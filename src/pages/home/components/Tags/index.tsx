@@ -160,8 +160,11 @@ export default function TagsSection() {
 
           <Grid container spacing={3} sx={{ mt: 4, justifyContent: "center" }}>
             {storeLocations.map((label, index) => (
-              <Grid key={index} size={{ xs: 6, sm: 3, md: 4, xl: 2 }}>
-                <Stack spacing={1}>
+              <Grid key={index} size={{ xs: 6, sm: 3, md: 4, lg: 3, xl: 2 }}>
+                <Stack
+                  spacing={1}
+                  sx={{ width: { xs: "auto", md: "202px", xl: "auto" } }}
+                >
                   <Box
                     component="img"
                     src={label.image}
