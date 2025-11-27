@@ -55,7 +55,10 @@ export default function History() {
 
   return (
     <Container
-      sx={{ py: { xs: 12.5, md: 11 }, position: "relative" }}
+      sx={{
+        pt: { xs: 12.5, md: 11 },
+        position: "relative",
+      }}
       id="nuestra-historia"
     >
       <Stack spacing={5}>
@@ -118,7 +121,7 @@ export default function History() {
           <Slider
             key="mobile"
             ref={sliderRef}
-            infinite={true}
+            infinite={false}
             speed={500}
             slidesToShow={1}
             slidesToScroll={1}
@@ -168,7 +171,14 @@ export default function History() {
           </Slider>
         </Box>
 
-        <Stack spacing={0.5}>
+        <Stack
+          spacing={0.5}
+          sx={{
+            position: "relative",
+            top: { xs: "auto", md: -100 },
+            width: { xs: "100%", md: "calc(100% - 180px)" },
+          }}
+        >
           <Typography variant="h6">
             {selectedHistoryItem?.descriptionTitle}
           </Typography>
@@ -183,6 +193,7 @@ export default function History() {
             position: "relative",
             width: "100%",
             py: 4,
+            top: { xs: "auto", md: -69 },
           }}
         >
           <Timeline
@@ -331,8 +342,9 @@ const PrevArrow = ({ onClick }: { onClick?: () => void }) => {
       onClick={onClick}
       sx={{
         position: "absolute",
-        left: "0",
-        bottom: "-50px",
+        left: { xs: "0", md: "auto" },
+        right: { xs: "auto", md: "64px" },
+        bottom: { xs: "-50px", md: "-128px" },
         zIndex: 2,
         cursor: "pointer",
         width: "50px",
@@ -360,8 +372,9 @@ const NextArrow = ({ onClick }: { onClick?: () => void }) => {
       onClick={onClick}
       sx={{
         position: "absolute",
-        left: "65px",
-        bottom: "-50px",
+        left: { xs: "65px ", md: "auto" },
+        right: { xs: "auto", md: "0" },
+        bottom: { xs: "-50px", md: "-128px" },
         zIndex: 2,
         cursor: "pointer",
         width: "50px",

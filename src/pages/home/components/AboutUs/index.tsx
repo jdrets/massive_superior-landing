@@ -118,7 +118,7 @@ const DesktopContent = () => {
             right: 32,
             left: "auto",
             img: {
-              height: "122px",
+              height: "140px",
             },
           }}
         />
