@@ -15,6 +15,12 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
 import addornment from "../../../../assets/ornamento.webp";
 
+// images
+import product1 from "./assets/producto-caguama.webp";
+import product2 from "./assets/producto-caguamon.webp";
+import product3 from "./assets/producto-media.webp";
+import product4 from "./assets/producto-lata.webp";
+
 export default function Products() {
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.only("sm"));
@@ -103,212 +109,222 @@ export default function Products() {
   const Wrapper = isDesktop ? DesktopWrapper : MobileWrapper;
 
   return (
-    <Wrapper>
-      <Stack spacing={5}>
-        <Container
-          maxWidth={isTablet ? "sm" : "md"}
-          sx={{ alignSelf: "center" }}
-        >
-          <Stack spacing={1.5}>
-            <Stack spacing={0.5}>
-              {/* <Stack spacing={5}> */}
-              {/* <Box
-                  component="img"
-                  src={addornment}
-                  alt="Adornment"
-                  height={48}
-                  width="fit-content"
-                  sx={{ alignSelf: "center" }}
-                /> */}
-
-              <Typography
-                variant="h2"
-                color="secondary.main"
-                textAlign={isTablet ? "center" : "left"}
-              >
-                Productos
-              </Typography>
-              {/* </Stack> */}
-              <Typography
-                variant="h6"
-                color="primary.main"
-                textAlign={isTablet ? "center" : "left"}
-              >
-                Hecha en México desde 1896.
-              </Typography>
-            </Stack>
-            <Stack spacing={1}>
-              <Box sx={{ height: "1px", backgroundColor: "secondary.main" }} />
-              <Stack>
+    <>
+      <Box
+        component="img"
+        src={addornment}
+        alt="Adornment"
+        height={70}
+        sx={{ alignSelf: "center", pt: 3 }}
+      />
+      <Wrapper>
+        <Stack spacing={5}>
+          <Container
+            maxWidth={isTablet ? "sm" : "md"}
+            sx={{ alignSelf: "center" }}
+          >
+            <Stack spacing={1.5}>
+              <Stack spacing={0.5}>
                 <Typography
-                  variant="h6"
+                  variant="h2"
+                  color="secondary.main"
                   textAlign={isTablet ? "center" : "left"}
                 >
-                  {selectedProduct?.title}
+                  Productos
                 </Typography>
+
                 <Typography
                   variant="h6"
+                  color="primary.main"
                   textAlign={isTablet ? "center" : "left"}
                 >
-                  {selectedProduct?.subtitle}
+                  Hecha en México desde 1896.
                 </Typography>
               </Stack>
-              <Box sx={{ height: "1px", backgroundColor: "secondary.main" }} />
-              <Typography
-                variant="body1"
-                textAlign={isTablet ? "center" : "left"}
-              >
-                {selectedProduct?.description}
-              </Typography>
+              <Stack spacing={1}>
+                <Box
+                  sx={{ height: "1px", backgroundColor: "secondary.main" }}
+                />
+                <Stack>
+                  <Typography
+                    variant="h6"
+                    textAlign={isTablet ? "center" : "left"}
+                  >
+                    {selectedProduct?.title}
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    textAlign={isTablet ? "center" : "left"}
+                  >
+                    {selectedProduct?.subtitle}
+                  </Typography>
+                </Stack>
+                <Box
+                  sx={{ height: "1px", backgroundColor: "secondary.main" }}
+                />
+                <Typography
+                  variant="body1"
+                  textAlign={isTablet ? "center" : "left"}
+                >
+                  {selectedProduct?.description}
+                </Typography>
+              </Stack>
             </Stack>
-          </Stack>
-        </Container>
-        <Box
-          sx={{
-            overflow: "hidden",
-            display: "flex",
-            justifyContent: isTablet ? "center" : "flex-start",
-          }}
-        >
+          </Container>
           <Box
-            ref={chipsContainerRef}
             sx={{
+              overflow: "hidden",
               display: "flex",
-              flexDirection: "row",
-              gap: "8px",
-              pl: isTablet ? 0 : 1.5,
-              overflowX: "scroll",
-              alignSelf: isTablet ? "center" : "flex-start",
+              justifyContent: isTablet ? "center" : "flex-start",
             }}
           >
-            {products.map(product => (
-              <Box
-                key={product.name}
-                ref={el => {
-                  chipRefs.current[product.name] = el as HTMLElement;
-                }}
-              >
-                <Chip
-                  label={product.name}
-                  color="primary"
-                  variant={
-                    selectedProduct?.name === product.name
-                      ? "filled"
-                      : "outlined"
-                  }
-                  onClick={() => handleSelectProduct(product)}
-                />
-              </Box>
-            ))}
+            <Box
+              ref={chipsContainerRef}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "8px",
+                pl: isTablet ? 0 : 1.5,
+                overflowX: "scroll",
+                alignSelf: isTablet ? "center" : "flex-start",
+              }}
+            >
+              {products.map(product => (
+                <Box
+                  key={product.name}
+                  ref={el => {
+                    chipRefs.current[product.name] = el as HTMLElement;
+                  }}
+                >
+                  <Chip
+                    label={product.name}
+                    color="primary"
+                    variant={
+                      selectedProduct?.name === product.name
+                        ? "filled"
+                        : "outlined"
+                    }
+                    onClick={() => handleSelectProduct(product)}
+                  />
+                </Box>
+              ))}
+            </Box>
           </Box>
-        </Box>
-      </Stack>
+        </Stack>
 
-      {/* Slider */}
-      <Box
-        sx={{
-          position: "relative",
-          width: "100%",
-          maxWidth: isTablet ? "100%" : "600px",
-          margin: "0 auto",
-          px: { xs: 2, sm: 4 },
-          pb: 8,
-          "& .slick-slider": {
+        {/* Slider */}
+        <Box
+          sx={{
             position: "relative",
-          },
-          "& .slick-list": {
-            padding: isTablet ? "0px 0 80px 0" : "0px 0 40px 0",
-          },
-          "& .slick-slide": {
-            padding: "0 10px",
-            "& > div": {
-              height: "100%",
+            width: "100%",
+            maxWidth: isTablet ? "100%" : "600px",
+            margin: "0 auto",
+            px: { xs: 2, sm: 4 },
+            pb: 8,
+            "& .slick-slider": {
+              position: "relative",
             },
-          },
-          "& .slick-dots": {
-            top: "auto",
-            bottom: isTablet ? "-90px" : "-50px",
-            right: "0",
-            left: "auto",
-            display: "flex !important",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            gap: "8px",
-            width: "auto",
-            height: "40px",
-            "& li": {
+            "& .slick-list": {
+              padding: isTablet ? "0px 0 80px 0" : "0px 0 40px 0",
+              height: isTablet ? "265px" : "auto",
+            },
+            "& .slick-slide": {
+              padding: "0 10px",
+              "& > div": {
+                height: "100%",
+              },
+            },
+            "& .slick-dots": {
+              top: "auto",
+              bottom: isTablet ? "-90px" : "-50px",
+              right: "0",
+              left: "auto",
+              display: "flex !important",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              gap: "8px",
               width: "auto",
-              height: "auto",
-              margin: 0,
-              "& button": {
-                width: "12px",
-                height: "12px",
-                padding: 0,
-                borderRadius: "50%",
-                border: "none",
-                backgroundColor: "rgba(187, 46, 40, 0.3)",
-                "&:before": {
-                  display: "none",
+              height: "40px",
+              "& li": {
+                width: "auto",
+                height: "auto",
+                margin: 0,
+                "& button": {
+                  width: "12px",
+                  height: "12px",
+                  padding: 0,
+                  borderRadius: "50%",
+                  border: "none",
+                  backgroundColor: "rgba(187, 46, 40, 0.3)",
+                  "&:before": {
+                    display: "none",
+                  },
+                },
+                "&.slick-active button": {
+                  backgroundColor: "primary.main",
                 },
               },
-              "&.slick-active button": {
-                backgroundColor: "primary.main",
-              },
             },
-          },
-        }}
-      >
-        <Slider
-          key={isTablet ? "tablet" : "mobile"}
-          ref={sliderRef}
-          dots={true}
-          infinite={true}
-          speed={500}
-          slidesToShow={isTablet ? 3 : 1}
-          slidesToScroll={1}
-          centerMode={isTablet}
-          centerPadding={isTablet ? "0px" : undefined}
-          prevArrow={<PrevArrow isTablet={isTablet} />}
-          nextArrow={<NextArrow isTablet={isTablet} />}
-          beforeChange={(_current: number, next: number) => {
-            setSelectedProduct(products[next]);
           }}
         >
-          {products.map(product => (
-            <Box key={product.name}>
-              <Box
-                sx={{
-                  backgroundColor: "white",
-                  borderRadius: "16px",
-                  padding: isTablet ? "10px 20px" : "40px 20px",
-                  border: "1px solid rgba(204, 204, 204, 1)",
-                  boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  minHeight: isTablet ? "250px" : "400px",
-                  aspectRatio: isTablet ? "1 / 1" : "auto",
-                  width: "100%",
-                }}
-              >
-                <Box
-                  component="img"
-                  src={product.image}
-                  alt={product.name}
-                  sx={{
-                    maxWidth: "100%",
-                    maxHeight: isTablet ? "100%" : "350px",
-                    width: isTablet ? "100%" : "auto",
-                    height: isTablet ? "100%" : "auto",
-                    objectFit: "contain",
-                  }}
-                />
-              </Box>
-            </Box>
-          ))}
-        </Slider>
-      </Box>
-    </Wrapper>
+          <Slider
+            key={isTablet ? "tablet" : "mobile"}
+            ref={sliderRef}
+            dots={true}
+            infinite={true}
+            speed={500}
+            slidesToShow={isTablet ? 3 : 1}
+            slidesToScroll={1}
+            centerMode={isTablet}
+            centerPadding={isTablet ? "0px" : undefined}
+            prevArrow={<PrevArrow isTablet={isTablet} />}
+            nextArrow={<NextArrow isTablet={isTablet} />}
+            beforeChange={(_current: number, next: number) => {
+              setSelectedProduct(products[next]);
+            }}
+          >
+            {products.map(product => {
+              const isSelected = selectedProduct?.name === product.name;
+              return (
+                <Box key={product.name}>
+                  <Box
+                    sx={{
+                      backgroundColor: "white",
+                      borderRadius: "16px",
+                      padding: isTablet ? "10px 20px" : "40px 20px",
+                      border: "1px solid rgba(204, 204, 204, 1)",
+                      boxShadow:
+                        isSelected && isTablet
+                          ? 6
+                          : "0 4px 16px rgba(0, 0, 0, 0.1)",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      minHeight: isTablet ? "250px" : "400px",
+                      aspectRatio: isTablet ? "1 / 1" : "auto",
+                      width: "100%",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={product.image}
+                      alt={product.name}
+                      sx={{
+                        maxWidth: "100%",
+                        maxHeight: isTablet ? "100%" : "350px",
+                        width: isTablet ? "100%" : "auto",
+                        height: isTablet ? "100%" : "auto",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </Box>
+                </Box>
+              );
+            })}
+          </Slider>
+        </Box>
+      </Wrapper>
+    </>
   );
 }
 
@@ -319,8 +335,8 @@ const products = [
     subtitle: "Color: Dorado",
     description:
       "Originaria de Orizaba Veracruz, Superior® cuenta con más de 125 años de historia y tradición cervecera. Está elaborada con ingredientes de primera calidad y ha sido galardonada con premios internacionales, que reconocen su sabor y frescura.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+
+    image: product4,
   },
   {
     name: "Caguamón 1.2L",
@@ -328,8 +344,7 @@ const products = [
     subtitle: "Color: Dorado",
     description:
       "Originaria de Orizaba Veracruz, Superior® cuenta con más de 125 años de historia y tradición cervecera. Está elaborada con ingredientes de primera calidad y ha sido galardonada con premios internacionales, que reconocen su sabor y frescura.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    image: product2,
   },
   {
     name: "Caguama 940ML",
@@ -337,8 +352,7 @@ const products = [
     subtitle: "Color: Dorado",
     description:
       "Originaria de Orizaba Veracruz, Superior® cuenta con más de 125 años de historia y tradición cervecera. Está elaborada con ingredientes de primera calidad y ha sido galardonada con premios internacionales, que reconocen su sabor y frescura.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    image: product1,
   },
   {
     name: "Media 325ML",
@@ -346,8 +360,7 @@ const products = [
     subtitle: "Color: Dorado",
     description:
       "Originaria de Orizaba Veracruz, Superior® cuenta con más de 125 años de historia y tradición cervecera. Está elaborada con ingredientes de primera calidad y ha sido galardonada con premios internacionales, que reconocen su sabor y frescura.",
-    image:
-      "https://cavagrapaan.alvisar.com/wp-content/uploads/2024/07/Superior-Lata.png",
+    image: product3,
   },
 ] as IProduct[];
 

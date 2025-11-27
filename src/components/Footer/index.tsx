@@ -6,9 +6,13 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { menuItems } from "./Header";
+import { menuItems } from "../Header";
 import { Facebook, Instagram } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+
+// bg
+import bgDesktop from "./assets/textura-roja-bg.webp";
+import bgMobile from "./assets/textura-roja-bg_mobile.webp";
 
 export default function Footer() {
   return (
@@ -18,6 +22,12 @@ export default function Footer() {
         color: "white",
         borderTop: "2px solid",
         borderColor: "secondary.main",
+        backgroundImage: {
+          xs: `url(${bgMobile})`,
+          md: `url(${bgDesktop})`,
+        },
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <Container sx={{ py: 6 }}>
