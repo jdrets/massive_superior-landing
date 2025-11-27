@@ -2,6 +2,7 @@ import { Container, Stack, Typography, Box, Button } from "@mui/material";
 import LegalTexts, { type LegalTextsProps } from "./LegalTexts";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "@mui/icons-material";
+import addornment from "../../../assets/ornamento.webp";
 
 export default function LegalLayout({
   data,
@@ -10,9 +11,18 @@ export default function LegalLayout({
   return (
     <Container sx={{ py: 4 }}>
       <Stack spacing={5}>
-        <Typography variant="h2" textAlign="center" color="secondary.main">
-          {title}
-        </Typography>
+        <Stack spacing={1}>
+          <Box
+            component="img"
+            src={addornment}
+            alt="Adornment"
+            height={70}
+            sx={{ alignSelf: "center", pt: 3 }}
+          />
+          <Typography variant="h2" textAlign="center" color="secondary.main">
+            {title}
+          </Typography>
+        </Stack>
         <Box
           sx={{
             backgroundColor: "secondary.main",
