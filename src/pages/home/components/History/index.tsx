@@ -54,7 +54,10 @@ export default function History() {
   };
 
   return (
-    <Container sx={{ py: { xs: 12.5, md: 11 }, position: "relative" }}>
+    <Container
+      sx={{ py: { xs: 12.5, md: 11 }, position: "relative" }}
+      id="nuestra-historia"
+    >
       <Stack spacing={5}>
         <Stack spacing={1.5}>
           <Stack spacing={1}>

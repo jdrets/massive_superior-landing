@@ -8,13 +8,31 @@ import {
 } from "@mui/material";
 import { menuItems } from "../Header";
 import { Facebook, Instagram } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // bg
 import bgDesktop from "./assets/textura-roja-bg.webp";
 import bgMobile from "./assets/textura-roja-bg_mobile.webp";
+import logo from "./assets/logo.webp";
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const handleGoTo = (href: string) => {
+    const anchor = href.startsWith("#") ? href.slice(1) : href;
+    const smoothScroll = (attemptsLeft = 10) => {
+      const element = document.getElementById(anchor);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      if (attemptsLeft > 0) {
+        requestAnimationFrame(() => smoothScroll(attemptsLeft - 1));
+      }
+    };
+
+    navigate("/");
+    requestAnimationFrame(() => smoothScroll());
+  };
   return (
     <Box
       sx={{
@@ -37,11 +55,16 @@ export default function Footer() {
           alignItems="center"
           justifyContent={{ xs: "center", md: "space-between" }}
         >
-          <Typography variant="h2">LOGO</Typography>
+          <Box component="img" src={logo} alt="Logo" height={70} />
 
           <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
             {menuItems.map(item => (
-              <Button variant="text" color="inherit" key={item.href}>
+              <Button
+                variant="text"
+                color="inherit"
+                key={item.anchor}
+                onClick={() => handleGoTo(item.anchor)}
+              >
                 {item.label}
               </Button>
             ))}

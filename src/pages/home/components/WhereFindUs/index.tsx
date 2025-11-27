@@ -67,7 +67,7 @@ export default function WhereFindUs() {
           height: "32px",
         }}
       />
-      <Container sx={{ position: "relative" }}>
+      <Container sx={{ position: "relative" }} id="donde-comprar">
         <Stack
           spacing={5}
           sx={{

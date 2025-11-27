@@ -118,7 +118,7 @@ export default function Products() {
         sx={{ alignSelf: "center", pt: 3 }}
       />
       <Wrapper>
-        <Stack spacing={5}>
+        <Stack spacing={5} id="productos">
           <Container
             maxWidth={isTablet ? "sm" : "md"}
             sx={{ alignSelf: "center" }}

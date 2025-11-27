@@ -6,7 +6,6 @@ import {
   Container,
   IconButton,
   Stack,
-  Typography,
 } from "@mui/material";
 import { Close, Menu } from "@mui/icons-material";
 import { useDisclosure } from "@chakra-ui/react";
@@ -17,8 +16,22 @@ export default function Header() {
   const mobileMenuDisclosure = useDisclosure();
 
   const navigate = useNavigate();
+
   const handleGoTo = (href: string) => {
-    navigate(href);
+    const anchor = href.startsWith("#") ? href.slice(1) : href;
+    const smoothScroll = (attemptsLeft = 10) => {
+      const element = document.getElementById(anchor);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      if (attemptsLeft > 0) {
+        requestAnimationFrame(() => smoothScroll(attemptsLeft - 1));
+      }
+    };
+
+    navigate("/");
+    requestAnimationFrame(() => smoothScroll());
   };
 
   return (
@@ -67,9 +80,9 @@ export default function Header() {
             {menuItems.map(item => (
               <Button
                 variant="text"
-                key={item.href}
+                key={item.anchor}
                 color="secondary"
-                onClick={() => handleGoTo(item.href)}
+                onClick={() => handleGoTo(item.anchor)}
               >
                 {item.label}
               </Button>
@@ -91,7 +104,7 @@ export default function Header() {
           <Button
             variant="outlined"
             color="primary"
-            onClick={() => handleGoTo("/donde-comprar")}
+            onClick={() => handleGoTo("#donde-comprar")}
           >
             Comprar ahora
           </Button>
@@ -103,11 +116,11 @@ export default function Header() {
           {menuItems.map(item => (
             <Button
               variant="text"
-              key={item.href}
+              key={item.anchor}
               color="secondary"
               fullWidth
               sx={{ justifyContent: "flex-start" }}
-              onClick={() => handleGoTo(item.href)}
+              onClick={() => handleGoTo(item.anchor)}
             >
               {item.label}
             </Button>
@@ -116,7 +129,7 @@ export default function Header() {
             variant="outlined"
             color="primary"
             fullWidth
-            onClick={() => handleGoTo("/donde-comprar")}
+            onClick={() => handleGoTo("#donde-comprar")}
           >
             Comprar ahora
           </Button>
@@ -141,14 +154,14 @@ const Logo = () => {
 export const menuItems = [
   {
     label: "Nuestra historia",
-    href: "/nuestra-historia",
+    anchor: "#nuestra-historia",
   },
   {
     label: "Productos",
-    href: "/productos",
+    anchor: "#productos",
   },
   {
     label: "Dónde comprar",
-    href: "/donde-comprar",
+    anchor: "#donde-comprar",
   },
 ];
