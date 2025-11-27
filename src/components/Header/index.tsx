@@ -5,13 +5,13 @@ import {
   Collapse,
   Container,
   IconButton,
-  Link,
   Stack,
   Typography,
 } from "@mui/material";
 import { Close, Menu } from "@mui/icons-material";
 import { useDisclosure } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import logo from "./assets/logo.webp";
 
 export default function Header() {
   const mobileMenuDisclosure = useDisclosure();
@@ -128,9 +128,13 @@ export default function Header() {
 
 const Logo = () => {
   return (
-    <Typography variant="h6" sx={{ fontWeight: 700 }}>
-      Logo
-    </Typography>
+    <Box
+      component="img"
+      src={logo}
+      alt="Logo"
+      height={48}
+      sx={{ display: "flex" }}
+    />
   );
 };
 

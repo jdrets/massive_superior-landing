@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { theme } from "../../../../theme";
 import { ChevronRight } from "@mui/icons-material";
+import chapita from "./assets/chapita.webp";
 
 export default function AboutUs() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -138,12 +139,18 @@ const DividerImage = ({ sx }: { sx?: SxProps }) => {
     <Box
       sx={{
         position: "absolute",
-        top: "-50px",
+        top: "-96px",
         left: 0,
         ...sx,
       }}
     >
-      <Box sx={{ backgroundColor: "blue", width: "100px", height: "100px" }} />
+      <Box
+        component="img"
+        src={chapita}
+        alt="Chapita"
+        height={192}
+        width={192}
+      />
     </Box>
   );
 };
