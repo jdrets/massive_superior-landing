@@ -13,6 +13,8 @@ import "slick-carousel/slick/slick-theme.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
 import dividerImage from "./assets/divider.webp";
+import bg from "./assets/bg.webp";
+import watermark from "./assets/watermark.webp";
 
 export default function History() {
   const [selectedHistoryItem, setSelectedHistoryItem] =
@@ -32,7 +34,7 @@ export default function History() {
   };
 
   return (
-    <Container sx={{ py: { xs: 12.5, md: 11 } }}>
+    <Container sx={{ py: { xs: 12.5, md: 11 }, position: "relative" }}>
       <Stack spacing={5}>
         <Stack spacing={1.5}>
           <Stack spacing={1}>
@@ -107,10 +109,15 @@ export default function History() {
               <Box key={item.year}>
                 <Box
                   sx={{
-                    backgroundColor: "rgba(209, 176, 104, 0.16)",
+                    backgroundImage: `url(${bg})`,
+                    backgroundBlendMode: "overlay",
+                    backgroundColor: "rgba(255, 255, 255, 0.40)",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
                     borderRadius: "16px",
                     padding: "40px 20px",
-                    border: "1px solid rgba(209, 176, 104, 0.16)",
+                    border: "1px solid #D1B06829",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
@@ -161,6 +168,33 @@ export default function History() {
           />
         </Box>
       </Stack>
+
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: { xs: "center", sm: "flex-end", md: "flex-start" },
+          alignItems: "center",
+          overflow: { xs: "hidden", md: "visible" },
+        }}
+      >
+        <Box
+          component="img"
+          src={watermark}
+          alt="Watermark"
+          sx={{
+            position: "relative",
+            width: { xs: "150%", sm: "560px", md: "681px" },
+            mt: { xs: "-180px", sm: "-120px", md: 0 },
+            left: { xs: "0", sm: "100px", md: "-340px" },
+            opacity: 0.8,
+          }}
+        />
+      </Box>
     </Container>
   );
 }
