@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
+import dividerImage from "./assets/divider.webp";
 
 export default function History() {
   const [selectedHistoryItem, setSelectedHistoryItem] =
@@ -31,14 +32,30 @@ export default function History() {
   };
 
   return (
-    <Container sx={{ py: 10 }}>
+    <Container sx={{ py: { xs: 12.5, md: 11 } }}>
       <Stack spacing={5}>
         <Stack spacing={1.5}>
-          <Typography variant="h2" color="secondary.main" textAlign="center">
-            Nuestra historia
-          </Typography>
+          <Stack spacing={1}>
+            <Box
+              component="img"
+              src={dividerImage}
+              alt="Divider"
+              height={{ xs: 21, md: 33 }}
+              width="fit-content"
+              sx={{ alignSelf: "center" }}
+            />
 
-          <Box sx={{ height: "1px", backgroundColor: "secondary.main" }} />
+            <Typography variant="h2" color="secondary.main" textAlign="center">
+              Nuestra historia
+            </Typography>
+          </Stack>
+
+          <Box
+            sx={{
+              height: "1px",
+              backgroundColor: "secondary.main",
+            }}
+          />
 
           <Stack spacing={1}>
             <Stack>

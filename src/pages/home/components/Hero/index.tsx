@@ -8,6 +8,8 @@ import {
   type SxProps,
 } from "@mui/material";
 import { theme } from "../../../../theme";
+import bgMobile from "./assets/bg-mobile.jpg";
+import bgDesktop from "./assets/bg-desktop.jpg";
 
 export default function Hero() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -16,7 +18,13 @@ export default function Hero() {
 
 const MobileContent = () => {
   return (
-    <Box sx={{ backgroundColor: "red" }}>
+    <Box
+      sx={{
+        backgroundImage: `url(${bgMobile})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <Container>
         <Stack
           spacing={2.5}
@@ -42,7 +50,13 @@ const MobileContent = () => {
 
 const DesktopContent = () => {
   return (
-    <Box sx={{ backgroundColor: "red" }}>
+    <Box
+      sx={{
+        backgroundImage: `url(${bgDesktop})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <Container>
         <Stack
           spacing={{ xs: 3, md: 4 }}

@@ -10,6 +10,9 @@ import {
 import { theme } from "../../../../theme";
 import { ChevronRight } from "@mui/icons-material";
 import chapita from "./assets/chapita.webp";
+import escudosPremios from "./assets/escudos-premios.webp";
+import bgMobile from "./assets/bg-mobile.png";
+import bgDesktop from "./assets/bg-desktop.jpg";
 
 export default function AboutUs() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -18,40 +21,71 @@ export default function AboutUs() {
 
 const MobileContent = () => {
   return (
-    <Box sx={{ backgroundColor: "brown" }}>
-      <Container sx={{ position: "relative" }}>
-        <DividerImage
-          sx={{
-            left: { xs: "50%", sm: 0 },
-            transform: { xs: "translateX(-50%)", sm: "none" },
-          }}
-        />
-        <Stack
-          spacing={2.5}
-          sx={{
-            height: { xs: "812px", sm: "1024px" },
-            color: "white",
-            pt: { xs: 12, sm: 17 },
-            width: { xs: "100%", sm: "581px" },
-            m: "0 auto",
-          }}
+    <Box sx={{}}>
+      <Box
+        sx={{
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.8) 3.1%, rgba(0, 0, 0, 0) 62.03%), url(${bgMobile})`,
+          backgroundSize: { xs: "200%", sm: "120%" },
+          backgroundPositionX: "center",
+          backgroundPositionY: { xs: "30%", sm: "40%" },
+          backgroundBlendMode: "overlay",
+          // filter: `drop-shadow(0 0 24px rgba(0, 0, 0, 0.40));`,
+        }}
+      >
+        <Container
+          sx={{ position: "relative", height: { xs: "887px", sm: "1166px" } }}
         >
-          <Texts
+          <DividerImage
             sx={{
-              m: "0 auto",
-              alignSelf: "center",
+              left: { xs: "50%", sm: 0 },
+              transform: { xs: "translateX(-50%)", sm: "none" },
             }}
           />
-          <Buttons />
-        </Stack>
-      </Container>
+
+          <Stack
+            spacing={2.5}
+            sx={{
+              color: "white",
+              pt: { xs: 12, sm: 17 },
+              width: { xs: "100%", sm: "581px" },
+              m: "0 auto",
+            }}
+          >
+            <Texts
+              sx={{
+                m: "0 auto",
+                alignSelf: "center",
+              }}
+            />
+            <Buttons />
+          </Stack>
+
+          <EscudosPremios
+            sx={{
+              bottom: "-80px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              boxShadow: "none",
+            }}
+          />
+        </Container>
+      </Box>
     </Box>
   );
 };
 
 const DesktopContent = () => {
   return (
-    <Box sx={{ backgroundColor: "brown" }}>
+    <Box
+      sx={{
+        backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.00) 45%, rgba(0, 0, 0, 0.24) 60%), url(${bgDesktop})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        // filter: `drop-shadow(0 0 24px rgba(0, 0, 0, 0.40));`,
+      }}
+    >
       <Container sx={{ position: "relative" }}>
         <DividerImage />
         <Stack
@@ -77,6 +111,17 @@ const DesktopContent = () => {
             }}
           />
         </Stack>
+
+        <EscudosPremios
+          sx={{
+            bottom: "-80px",
+            right: 32,
+            left: "auto",
+            img: {
+              height: "122px",
+            },
+          }}
+        />
       </Container>
     </Box>
   );
@@ -150,6 +195,25 @@ const DividerImage = ({ sx }: { sx?: SxProps }) => {
         alt="Chapita"
         height={192}
         width={192}
+      />
+    </Box>
+  );
+};
+
+const EscudosPremios = ({ sx }: { sx?: SxProps }) => {
+  return (
+    <Box
+      sx={{
+        position: "absolute",
+        left: 0,
+        ...sx,
+      }}
+    >
+      <Box
+        component="img"
+        src={escudosPremios}
+        alt="Escudos Premios"
+        height={117}
       />
     </Box>
   );
