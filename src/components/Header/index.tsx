@@ -18,6 +18,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   const handleGoTo = (href: string) => {
+    mobileMenuDisclosure.onClose();
     const anchor = href.startsWith("#") ? href.slice(1) : href;
     const smoothScroll = (attemptsLeft = 10) => {
       const element = document.getElementById(anchor);
