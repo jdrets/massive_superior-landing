@@ -10,6 +10,7 @@ import {
   styled,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import logo from "./assets/logo.webp";
 
 const TexfFieldStyled = styled(TextField)({
   input: {
@@ -89,10 +90,17 @@ export default function AgeGate() {
           justifyContent: "center",
           alignItems: "center",
           height: "100%",
+          alignSelf: "center",
         }}
       >
-        <Stack spacing={4} textAlign="center">
-          <Typography variant="h1">LOGO</Typography>
+        <Stack spacing={4} textAlign="center" alignItems="center">
+          <Box
+            component="img"
+            src={logo}
+            alt="Logo"
+            height={{ xs: 133, md: 196, xl: 287 }}
+            width="fit-content"
+          />
 
           <Typography variant="body1" fontWeight={600}>
             Por favor, ingresa tu año de nacimiento, <br /> queremos validar tu

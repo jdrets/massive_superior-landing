@@ -112,13 +112,13 @@ export const theme = createTheme({
         },
         {
           props: { variant: "outlined", color: "white" },
-          style: ({ theme }) => ({
+          style: {
             borderColor: "#ffffff",
             color: "#ffffff",
             "&:hover": {
               backgroundColor: "rgba(255, 255, 255, 0.1)",
             },
-          }),
+          },
         },
       ],
     },
