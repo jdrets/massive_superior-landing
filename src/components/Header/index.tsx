@@ -31,7 +31,8 @@ export default function Header() {
       }
     };
 
-    navigate("/");
+    const hash = href.startsWith("#") ? href : `#${href}`;
+    navigate({ pathname: "/", hash });
     requestAnimationFrame(() => smoothScroll());
   };
 

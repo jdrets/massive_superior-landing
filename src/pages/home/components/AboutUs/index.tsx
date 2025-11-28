@@ -13,6 +13,7 @@ import chapita from "./assets/chapita.webp";
 import escudosPremios from "./assets/escudos-premios.webp";
 import bgMobile from "./assets/bg-mobile.webp";
 import bgDesktop from "./assets/bg-desktop.webp";
+import { useNavigate } from "react-router-dom";
 
 export default function AboutUs() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -201,12 +202,41 @@ const Texts = ({ sx }: { sx?: SxProps }) => {
 };
 
 const Buttons = ({ sx }: { sx?: SxProps }) => {
+  const navigate = useNavigate();
+
+  const handleGoTo = (href: string) => {
+    const anchor = href.startsWith("#") ? href.slice(1) : href;
+    const hash = href.startsWith("#") ? href : `#${href}`;
+    const smoothScroll = (attemptsLeft = 10) => {
+      const element = document.getElementById(anchor);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      if (attemptsLeft > 0) {
+        requestAnimationFrame(() => smoothScroll(attemptsLeft - 1));
+      }
+    };
+
+    navigate({ pathname: "/", hash });
+    requestAnimationFrame(() => smoothScroll());
+  };
+  
   return (
     <Stack direction="row" spacing={2} justifyContent="center" sx={sx}>
-      <Button variant="contained" color="white">
+      <Button
+        variant="contained"
+        color="white"
+        onClick={() => handleGoTo("#donde-comprar")}
+      >
         Comprar ahora
       </Button>
-      <Button variant="text" color="white" endIcon={<ChevronRight />}>
+      <Button
+        variant="text"
+        color="white"
+        endIcon={<ChevronRight />}
+        onClick={() => handleGoTo("#productos")}
+      >
         Ver productos
       </Button>
     </Stack>

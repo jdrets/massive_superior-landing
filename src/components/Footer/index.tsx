@@ -17,7 +17,7 @@ import logo from "./assets/logo.webp";
 
 export default function Footer() {
   const navigate = useNavigate();
-  
+
   const handleGoTo = (href: string) => {
     const anchor = href.startsWith("#") ? href.slice(1) : href;
     const smoothScroll = (attemptsLeft = 10) => {
@@ -31,7 +31,8 @@ export default function Footer() {
       }
     };
 
-    navigate("/");
+    const hash = href.startsWith("#") ? href : `#${href}`;
+    navigate({ pathname: "/", hash });
     requestAnimationFrame(() => smoothScroll());
   };
 

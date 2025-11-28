@@ -114,8 +114,8 @@ const Buttons = ({ sx }: { sx?: SxProps }) => {
         requestAnimationFrame(() => smoothScroll(attemptsLeft - 1));
       }
     };
-
-    navigate("/");
+    const hash = href.startsWith("#") ? href : `#${href}`;
+    navigate({ pathname: "/", hash });
     requestAnimationFrame(() => smoothScroll());
   };
   return (
