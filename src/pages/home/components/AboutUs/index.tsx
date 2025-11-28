@@ -21,56 +21,73 @@ export default function AboutUs() {
 
 const MobileContent = () => {
   return (
-    <Box sx={{}}>
-      <Box
-        sx={{
-          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.8) 3.1%, rgba(0, 0, 0, 0) 62.03%), url(${bgMobile})`,
-          backgroundSize: { xs: "200%", sm: "120%" },
-          backgroundPositionX: "center",
-          backgroundPositionY: { xs: "30%", sm: "40%" },
-          backgroundBlendMode: "overlay",
-          // filter: `drop-shadow(0 0 24px rgba(0, 0, 0, 0.40));`,
-        }}
-      >
-        <Container
-          sx={{ position: "relative", height: { xs: "887px", sm: "1166px" } }}
-        >
-          <DividerImage
+    <Box
+      sx={{
+        position: "relative",
+        zIndex: 3,
+        left: "-20px",
+        width: "calc(100% + 35px)",
+        filter: `drop-shadow(0 0 24px rgba(0, 0, 0, 0.40));`,
+      }}
+    >
+      <Box sx={{}}>
+        <Box sx={{ transform: "rotate(1.5deg)", mt: -4 }}>
+          <Box
             sx={{
-              left: { xs: "50%", sm: 0 },
-              transform: { xs: "translateX(-50%)", sm: "none" },
-            }}
-          />
-
-          <Stack
-            spacing={2.5}
-            sx={{
-              color: "white",
-              pt: { xs: 12, sm: 17 },
-              width: { xs: "100%", sm: "581px" },
-              m: "0 auto",
+              backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.8) 3.1%, rgba(0, 0, 0, 0) 62.03%), url(${bgMobile})`,
+              backgroundSize: { xs: "200%", sm: "120%" },
+              backgroundPositionX: "center",
+              backgroundPositionY: { xs: "30%", sm: "40%" },
+              backgroundBlendMode: "overlay",
+              borderRadius: 3,
             }}
           >
-            <Texts
+            <Container
               sx={{
-                m: "0 auto",
-                alignSelf: "center",
+                position: "relative",
+                height: { xs: "887px", sm: "1166px" },
+                transform: "rotate(-1.5deg)",
+                px: 6,
               }}
-            />
-            <Buttons />
-          </Stack>
+            >
+              <DividerImage
+                sx={{
+                  left: { xs: "50%", sm: 0 },
+                  transform: { xs: "translateX(-50%)", sm: "none" },
+                }}
+              />
 
-          <EscudosPremios
-            sx={{
-              bottom: "-80px",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              boxShadow: "none",
-            }}
-          />
-        </Container>
+              <Stack
+                spacing={2.5}
+                sx={{
+                  color: "white",
+                  pt: { xs: 12, sm: 17 },
+                  width: { xs: "100%", sm: "581px" },
+                  m: "0 auto",
+                }}
+              >
+                <Texts
+                  sx={{
+                    m: "0 auto",
+                    alignSelf: "center",
+                  }}
+                />
+                <Buttons />
+              </Stack>
+
+              <EscudosPremios
+                sx={{
+                  bottom: "-80px",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  boxShadow: "none",
+                }}
+              />
+            </Container>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
@@ -80,49 +97,65 @@ const DesktopContent = () => {
   return (
     <Box
       sx={{
-        backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.00) 45%, rgba(0, 0, 0, 0.24) 60%), url(${bgDesktop})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        // filter: `drop-shadow(0 0 24px rgba(0, 0, 0, 0.40));`,
+        position: "relative",
+        zIndex: 3,
+        left: "-10px",
+        width: "calc(100% + 10px)",
+        filter: `drop-shadow(0 0 24px rgba(0, 0, 0, 0.40));`,
       }}
     >
-      <Container sx={{ position: "relative" }}>
-        <DividerImage />
-        <Stack
-          spacing={4}
-          sx={{
-            height: "900px",
-            color: "white",
-            justifyContent: "center",
-          }}
-        >
-          <Texts
+      <Box sx={{}}>
+        <Box sx={{ transform: "rotate(1.5deg)", mt: -4 }}>
+          <Box
             sx={{
-              width: "451px",
-              m: "0 auto",
-              alignSelf: "flex-end",
+              backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.00) 45%, rgba(0, 0, 0, 0.24) 60%), url(${bgDesktop})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              borderRadius: 3,
             }}
-          />
+          >
+            <Container
+              sx={{ position: "relative", transform: "rotate(-1.5deg)" }}
+            >
+              <DividerImage />
+              <Stack
+                spacing={4}
+                sx={{
+                  height: "900px",
+                  color: "white",
+                  justifyContent: "center",
+                }}
+              >
+                <Texts
+                  sx={{
+                    width: "451px",
+                    m: "0 auto",
+                    alignSelf: "flex-end",
+                  }}
+                />
 
-          <Buttons
-            sx={{
-              width: "451px",
-              alignSelf: "flex-end",
-            }}
-          />
-        </Stack>
+                <Buttons
+                  sx={{
+                    width: "451px",
+                    alignSelf: "flex-end",
+                  }}
+                />
+              </Stack>
 
-        <EscudosPremios
-          sx={{
-            bottom: "-80px",
-            right: 32,
-            left: "auto",
-            img: {
-              height: "140px",
-            },
-          }}
-        />
-      </Container>
+              <EscudosPremios
+                sx={{
+                  bottom: "-80px",
+                  right: 32,
+                  left: "auto",
+                  img: {
+                    height: "140px",
+                  },
+                }}
+              />
+            </Container>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };

@@ -9,7 +9,7 @@ import Products from "./components/Products";
 
 export default function HomePage() {
   return (
-    <Stack>
+    <Stack sx={{ overflowX: "hidden" }}>
       <AgeGate />
       <Hero />
       <AboutUs />
