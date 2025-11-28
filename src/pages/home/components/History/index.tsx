@@ -69,8 +69,7 @@ export default function History() {
               src={dividerImage}
               alt="Divider"
               height={{ xs: 21, md: 33 }}
-              width="fit-content"
-              sx={{ alignSelf: "center" }}
+              sx={{ alignSelf: "center", width: { xs: 164, md: 248 } }}
             />
 
             <Typography variant="h2" color="secondary.main" textAlign="center">
@@ -215,6 +214,7 @@ export default function History() {
           justifyContent: { xs: "center", sm: "flex-end", md: "flex-start" },
           alignItems: "center",
           overflow: { xs: "hidden", md: "visible" },
+          pointerEvents: "none",
         }}
       >
         <Box

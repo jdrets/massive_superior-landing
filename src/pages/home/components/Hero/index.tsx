@@ -10,6 +10,7 @@ import {
 import { theme } from "../../../../theme";
 import bgMobile from "./assets/bg-mobile.jpg";
 import bgDesktop from "./assets/bg-desktop.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -100,12 +101,37 @@ const Texts = ({ sx }: { sx?: SxProps }) => {
 };
 
 const Buttons = ({ sx }: { sx?: SxProps }) => {
+  const navigate = useNavigate();
+  const handleGoTo = (href: string) => {
+    const anchor = href.startsWith("#") ? href.slice(1) : href;
+    const smoothScroll = (attemptsLeft = 10) => {
+      const element = document.getElementById(anchor);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      if (attemptsLeft > 0) {
+        requestAnimationFrame(() => smoothScroll(attemptsLeft - 1));
+      }
+    };
+
+    navigate("/");
+    requestAnimationFrame(() => smoothScroll());
+  };
   return (
     <Stack direction="row" spacing={2} justifyContent="center" sx={sx}>
-      <Button variant="contained" color="white">
+      <Button
+        variant="contained"
+        color="white"
+        onClick={() => handleGoTo("#nuestra-historia")}
+      >
         Conocer más
       </Button>
-      <Button variant="outlined" color="white">
+      <Button
+        variant="outlined"
+        color="white"
+        onClick={() => handleGoTo("#productos")}
+      >
         Ver productos
       </Button>
     </Stack>
