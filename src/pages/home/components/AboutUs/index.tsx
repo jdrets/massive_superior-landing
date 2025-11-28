@@ -22,6 +22,7 @@ export default function AboutUs() {
 const MobileContent = () => {
   return (
     <Box
+      id="about-us"
       sx={{
         position: "relative",
         zIndex: 3,

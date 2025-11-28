@@ -56,6 +56,8 @@ export default function AgeGate() {
     }
 
     localStorage.setItem("hasAgeSetted", "true");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setOpen(false);
   };
 
@@ -65,6 +67,7 @@ export default function AgeGate() {
 
   return (
     <Box
+      id="age-gate"
       sx={{
         position: "fixed",
         top: 0,
@@ -98,7 +101,8 @@ export default function AgeGate() {
             component="img"
             src={logo}
             alt="Logo"
-            height={{ xs: 133, md: 196, xl: 287 }}
+            height={{ xs: "133px", md: "196px", xl: "287px" }}
+            maxWidth="100%"
             width="fit-content"
           />
 
